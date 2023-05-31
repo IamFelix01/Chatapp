@@ -20,11 +20,17 @@ public class LoginServlet extends HttpServlet {
         String username = (String) request.getParameter("username");
         String password = (String) request.getParameter("password");
         UserManager um = new UserManager();
-        if(um.checkUser(username)){
-            response.sendRedirect("ChatInterface.jsp");
-        } else {
-            response.sendRedirect("index.jsp");
-        }
+        HttpSession session = request.getSession();
+        UserManager userManager = new UserManager();
+        UsersEntity user1 = userManager.FindUserByUsername(username);
+
+        session.setAttribute("auth-user",user1);
+        pr.println("Hello"+user1.getUsername());
+//        if(um.checkUser(username)){
+//            response.sendRedirect("ChatInterface.jsp");
+//        } else {
+//            response.sendRedirect("index.jsp");
+//        }
 //        if(!user.getUsername().equals("")){
 //            pr.println("<h1>Not Found</h1>");
 //        } else {

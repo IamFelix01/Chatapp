@@ -10,7 +10,7 @@ import java.util.Date;
 public class UsersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int iduser;
 
     @Column(name = "username")
     private String username;
@@ -37,11 +37,11 @@ public class UsersEntity {
     }
 
     public int getId() {
-        return id;
+        return iduser;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int iduser) {
+        this.iduser = iduser;
     }
 
     public String getUsername() {
