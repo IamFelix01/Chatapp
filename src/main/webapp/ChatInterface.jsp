@@ -7,7 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="Entity.*" import="java.util.*"%>
-<% UsersEntity authUser = (UsersEntity) session.getAttribute("auth-user");%>
+<% UsersEntity authUser = (UsersEntity) session.getAttribute("auth-user");
+  Collection<UsersEntity> allusers = (Collection<UsersEntity>) session.getAttribute("allusers");
+%>
 <html>
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -39,6 +41,7 @@
 
                   <div data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
                     <ul class="list-unstyled mb-0">
+                      <%for(UsersEntity e: allusers){%>
                       <li class="p-2 border-bottom">
                         <a href="#!" class="d-flex justify-content-between">
                           <div class="d-flex flex-row">
@@ -49,7 +52,7 @@
                               <span class="badge bg-success badge-dot"></span>
                             </div>
                             <div class="pt-1">
-                              <p class="fw-bold mb-0">Marie Horwitz</p>
+                              <p class="fw-bold mb-0"><%=e.getFirstName()%></p>
                               <p class="small text-muted">Hello, Are you there?</p>
                             </div>
                           </div>
@@ -59,7 +62,7 @@
                           </div>
                         </a>
                       </li>
-
+                      <%}%>
 
                     </ul>
                   </div>
@@ -69,7 +72,7 @@
               </div>
 
               <div class="col-md-6 col-lg-7 col-xl-8">
-
+              <div><span><%=authUser.getFirstName()%></span></div>
                 <div class="pt-3 pe-3" data-mdb-perfect-scrollbar="true"
                      style="position: relative; height: 400px">
 
