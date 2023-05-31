@@ -105,7 +105,7 @@
                   <%}%>
 
                 </div>
-
+              <form action="Send-Message-Servlet">
                 <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
                        alt="avatar 3" style="width: 40px; height: 100%;">
@@ -113,8 +113,10 @@
                          placeholder="Type message"><br>
 
                 </div>
-                <a class="ms-3" href="Send-Message-Servlet">Send</a>
+                <button type="submit" class="btn btn-primary btn-block mb-4">SEND</button>
+              </form>
               </div>
+
             </div>
 
           </div>
