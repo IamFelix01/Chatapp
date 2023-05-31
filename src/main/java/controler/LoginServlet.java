@@ -22,15 +22,18 @@ public class LoginServlet extends HttpServlet {
         UserManager um = new UserManager();
         HttpSession session = request.getSession();
         UserManager userManager = new UserManager();
-        UsersEntity user1 = userManager.FindUserByUsername(username);
-
-        session.setAttribute("auth-user",user1);
-        pr.println("Hello"+user1.getUsername());
-//        if(um.checkUser(username)){
-//            response.sendRedirect("ChatInterface.jsp");
-//        } else {
-//            response.sendRedirect("index.jsp");
-//        }
+        UsersEntity user = userManager.FindUserByUsername(username);
+        System.out.println("Hello "+user.getFirstName());
+        session.setAttribute("auth-user", user);
+//        UsersEntity user1 = userManager.FindUserByUsername(username);
+//
+//        session.setAttribute("auth-user",user1);
+//        pr.println("Hello"+user1.getUsername());
+        if(um.checkUser(username)){
+            response.sendRedirect("ChatInterface.jsp");
+        } else {
+            response.sendRedirect("index.jsp");
+        }
 //        if(!user.getUsername().equals("")){
 //            pr.println("<h1>Not Found</h1>");
 //        } else {

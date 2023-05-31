@@ -28,7 +28,7 @@ public class UsersEntity {
     private String password;
 
     @Column(name = "PERMISSION")
-    private int permission;
+    private String permission;
 
     @Column(name = "LAST_CONNECTION_TIME")
     private Timestamp lastConnectionTime;
@@ -84,11 +84,11 @@ public class UsersEntity {
         this.password = password;
     }
 
-    public int getPermission() {
+    public String getPermission() {
         return permission;
     }
 
-    public void setPermission(int permission) {
+    public void setPermission(String permission) {
         this.permission = permission;
     }
 

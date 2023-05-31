@@ -50,17 +50,10 @@ public class UserManager {
     }
     public UsersEntity FindUserByUsername(String username){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Query query = entityManager.createNativeQuery("SELECT * FROM USERS WHERE username = ?");
+        Query query = entityManager.createNativeQuery("SELECT * FROM users WHERE username=?",UsersEntity.class);
         query.setParameter(1, username);
-        List<UsersEntity> users =  query.getResultList();
-        if(!users.isEmpty()){
-            UsersEntity user = users.get(0);
-            System.out.println("USER : "+user.getUsername());
-            return user;
-        }
-        System.out.println("Null");
-
-        return null;
+        UsersEntity user = (UsersEntity) query.getSingleResult();
+        return user;
     }
 
     public boolean checkUser(String username){
