@@ -1,17 +1,17 @@
 package dao;
 
 import Entity.UsersEntity;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 public class UserManager {
+    @PersistenceContext
+
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
     public boolean save(UsersEntity user){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -48,13 +48,23 @@ public class UserManager {
             entityManager.close();
         }
     }
-    public UsersEntity getUserById(int iduser){
+    public UsersEntity FindUserByUsername(String username){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            return entityManager.find(UsersEntity.class, iduser);
+            return entityManager.find(UsersEntity.class, username);
         } finally {
             entityManager.close();
         }
+    }
+
+    public boolean checkUser(String username){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Query query = entityManager.createNativeQuery("SELECT * FROM USERS WHERE username = ?");
+        query.setParameter(1, username);
+        List<UsersEntity> users = query.getResultList();
+        return !users.isEmpty();
+
+
     }
     public Collection<UsersEntity> getAll(){
         EntityManager entityManager = entityManagerFactory.createEntityManager();

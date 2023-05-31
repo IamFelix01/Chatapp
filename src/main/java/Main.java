@@ -1,12 +1,10 @@
 import Entity.MessageEntity;
-import Entity.UsersEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
-import org.hibernate.Transaction;
+
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class Main {
 
@@ -57,12 +55,12 @@ public class Main {
 //            user.setUsername("saidbenchad");
 //            user.setPassword("12345678");
 //            entityManager.persist(user);
-            MessageEntity msg = new MessageEntity();
-            msg.setIduser(1);
-            msg.setContent("Hello Felix");
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            msg.setTimestamp(timestamp);
-            entityManager.persist(msg);
+//            MessageEntity msg = new MessageEntity();
+//            msg.setIduser(1);
+//            msg.setContent("Hello Felix");
+//            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+//            msg.setTimestamp(timestamp);
+//            entityManager.persist(msg);
 
             transaction.commit();
         }finally {

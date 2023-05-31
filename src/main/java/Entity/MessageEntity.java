@@ -6,39 +6,35 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "message", schema = "chatapp")
+@Table(name = "Message")
 public class MessageEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idMessage")
-    private int idMessage;
-    @Basic
-    @Column(name = "content")
-    private String content;
-    @Basic
-    @Column(name = "timestamp")
-    private Date timestamp;
-    @Basic
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idmessage;
+
     @Column(name = "iduser")
-    private int iduser;
-//    @ManyToOne
-//    @JoinColumn(name = "iduser", referencedColumnName = "iduser", nullable = false)
-//    private UsersEntity usersByIduser;
+    private int userId;
 
-    public int getIdMessage() {
-        return idMessage;
+    @Column(name = "TIMESTAMP")
+    private Date timestamp;
+
+    @Column(name = "CONTENT")
+    private String content;
+
+    public int getIdmessage() {
+        return idmessage;
     }
 
-    public void setIdMessage(int idMessage) {
-        this.idMessage = idMessage;
+    public void setIdmessage(int idmessage) {
+        this.idmessage = idmessage;
     }
 
-    public String getContent() {
-        return content;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Date getTimestamp() {
@@ -49,43 +45,14 @@ public class MessageEntity {
         this.timestamp = timestamp;
     }
 
-    public int getIduser() {
-        return iduser;
+    public String getContent() {
+        return content;
     }
 
-    public void setIduser(int iduser) {
-        this.iduser = iduser;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        MessageEntity that = (MessageEntity) o;
-
-        if (idMessage != that.idMessage) return false;
-        if (iduser != that.iduser) return false;
-        if (content != null ? !content.equals(that.content) : that.content != null) return false;
-        if (timestamp != null ? !timestamp.equals(that.timestamp) : that.timestamp != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = idMessage;
-        result = 31 * result + (content != null ? content.hashCode() : 0);
-        result = 31 * result + (timestamp != null ? timestamp.hashCode() : 0);
-        result = 31 * result + iduser;
-        return result;
-    }
-
-//    public UsersEntity getUsersByIduser() {
-//        return usersByIduser;
-//    }
-//
-//    public void setUsersByIduser(UsersEntity usersByIduser) {
-//        this.usersByIduser = usersByIduser;
-//    }
+    // Constructor, getters, and setters
 }

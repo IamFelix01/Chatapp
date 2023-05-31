@@ -1,7 +1,6 @@
 package dao;
 
 import Entity.MessageEntity;
-import Entity.UsersEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

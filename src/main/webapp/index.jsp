@@ -28,27 +28,13 @@
         <div class="col-lg-6 mb-5 mb-lg-0">
           <div class="card">
             <div class="card-body py-5 px-md-5">
-              <form>
+
                 <!-- 2 column grid layout with text inputs for the first and last names -->
-                <div class="row">
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <input placeholder="First Name" name="firstname" type="text" id="form3Example1" class="form-control" />
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <input placeholder="Last Name" type="text" name="lastname" id="form3Example2" class="form-control" />
-                    </div>
-                  </div>
-                </div>
+                <form action="login-servlet">
 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input placeholder="Email" type="email" name="email" id="form3Example3" class="form-control" />
-                </div>
-                <div class="form-outline mb-4">
-                  <input placeholder="Username" type="email" name="username" class="form-control" />
+                  <input placeholder="Username" type="text" name="username" class="form-control" />
                 </div>
                 <!-- Password input -->
                 <div class="form-outline mb-4">
@@ -60,14 +46,11 @@
 
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-primary btn-block mb-4">
-                  Sign up
+                  Login
                 </button>
 
                 <!-- Register buttons -->
-                <div class="text-center">
-                  <p>or sign in:</p>
-                  <a href="#">Sign in</a>
-                </div>
+
               </form>
             </div>
           </div>
