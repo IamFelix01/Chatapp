@@ -34,9 +34,8 @@ public class LoginServlet extends HttpServlet {
 
 
         MessageManager messageManager = new MessageManager();
-        Collection<MessageEntity> messages = messageManager.getAllMessagesByUserId(user.getId());
+        Collection<MessageEntity> messages = messageManager.getAll();
         session.setAttribute("allmessages",messages);
-
 
 
         //Redirection

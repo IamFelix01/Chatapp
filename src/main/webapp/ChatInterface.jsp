@@ -36,12 +36,13 @@
                   <div class="input-group rounded mb-3">
                     <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                            aria-describedby="search-addon" />
+
                     <span class="input-group-text border-0" id="search-addon">
                       <i class="fas fa-search"></i>
                     </span>
                   </div>
 
-                  <div data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
+                  <div class="scrollable-list" style=" height: 400px; overflow-y: auto;">
                     <ul class="list-unstyled mb-0">
                       <%for(UsersEntity e: allusers){%>
                       <li class="p-2 border-bottom">
@@ -75,11 +76,12 @@
 
               <div class="col-md-6 col-lg-7 col-xl-8">
               <div><span><%=authUser.getFirstName()%></span></div>
-                <div class="pt-3 pe-3" data-mdb-perfect-scrollbar="true"
-                     style="position: relative; height: 400px">
+                <div class="pt-3 pe-3 scrollable-messages"
+                     style="height: 400px; overflow-y: auto;">
                   <%while(itr.hasNext()){
                   MessageEntity msg = itr.next();
                   %>
+                  <%if(msg.getUserId()==authUser.getId()){%>
                   <div class="d-flex flex-row justify-content-start">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
                          alt="avatar 1" style="width: 45px; height: 100%;">
@@ -88,20 +90,19 @@
                       <p class="small ms-3 mb-3 rounded-3 text-muted float-end"><%=msg.getTimestamp()%></p>
                     </div>
                   </div>
-                  <%}%>
+                  <%}else{%>
+
                   <div class="d-flex flex-row justify-content-end">
                     <div><span></span></div>
                     <div>
-                      <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">Ut enim ad minim veniam,
-                        quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                      <p class="small me-3 mb-3 rounded-3 text-muted">12:00 PM | Aug 13</p>
+                      <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary"><%=msg.getContent()%></p>
+                      <p class="small me-3 mb-3 rounded-3 text-muted"><%=msg.getTimestamp()%></p>
                     </div>
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                          alt="avatar 1" style="width: 45px; height: 100%;">
                   </div>
-
-
+                  <%}%>
+                  <%}%>
 
                 </div>
 
@@ -109,10 +110,10 @@
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
                        alt="avatar 3" style="width: 40px; height: 100%;">
                   <input type="text" name="Message" class="form-control form-control-lg" id="exampleFormControlInput2"
-                         placeholder="Type message">
-                  <a class="ms-3" href="Send-Message-Servlet"><i class="fas fa-paper-plane"></i></a>
-                </div>
+                         placeholder="Type message"><br>
 
+                </div>
+                <a class="ms-3" href="Send-Message-Servlet">Send</a>
               </div>
             </div>
 

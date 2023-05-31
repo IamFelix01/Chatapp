@@ -23,7 +23,7 @@ public class SendMessageServlet extends HttpServlet {
         PrintWriter pr = response.getWriter();
         String Message = request.getParameter("Message");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
+        System.out.println(Message);
         HttpSession session = request.getSession();
 
         UsersEntity user = (UsersEntity) session.getAttribute("auth-user");
@@ -35,6 +35,8 @@ public class SendMessageServlet extends HttpServlet {
         MessageManager messageManager = new MessageManager();
         messageManager.save(messageEntity);
 
+        Collection<MessageEntity> messages = messageManager.getAll();
+        session.setAttribute("allmessages",messages);
         response.sendRedirect("ChatInterface.jsp");
 
 
