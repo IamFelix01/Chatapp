@@ -9,6 +9,8 @@
 <%@ page import="Entity.*" import="java.util.*"%>
 <% UsersEntity authUser = (UsersEntity) session.getAttribute("auth-user");
   Collection<UsersEntity> allusers = (Collection<UsersEntity>) session.getAttribute("allusers");
+  Collection<MessageEntity> messages =  (Collection<MessageEntity>) session.getAttribute("allmessages");
+  Iterator<MessageEntity> itr = messages.iterator();
 %>
 <html>
 <head>
@@ -75,20 +77,18 @@
               <div><span><%=authUser.getFirstName()%></span></div>
                 <div class="pt-3 pe-3" data-mdb-perfect-scrollbar="true"
                      style="position: relative; height: 400px">
-
+                  <%while(itr.hasNext()){
+                  MessageEntity msg = itr.next();
+                  %>
                   <div class="d-flex flex-row justify-content-start">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
                          alt="avatar 1" style="width: 45px; height: 100%;">
                     <div>
-                      <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">Lorem ipsum
-                        dolor
-                        sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore
-                        magna aliqua.</p>
-                      <p class="small ms-3 mb-3 rounded-3 text-muted float-end">12:00 PM | Aug 13</p>
+                      <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;"><%=msg.getContent()%></p>
+                      <p class="small ms-3 mb-3 rounded-3 text-muted float-end"><%=msg.getTimestamp()%></p>
                     </div>
                   </div>
-
+                  <%}%>
                   <div class="d-flex flex-row justify-content-end">
                     <div><span></span></div>
                     <div>
@@ -108,11 +108,9 @@
                 <div class="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6-bg.webp"
                        alt="avatar 3" style="width: 40px; height: 100%;">
-                  <input type="text" class="form-control form-control-lg" id="exampleFormControlInput2"
+                  <input type="text" name="Message" class="form-control form-control-lg" id="exampleFormControlInput2"
                          placeholder="Type message">
-                  <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
-                  <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a>
-                  <a class="ms-3" href="#!"><i class="fas fa-paper-plane"></i></a>
+                  <a class="ms-3" href="Send-Message-Servlet"><i class="fas fa-paper-plane"></i></a>
                 </div>
 
               </div>
@@ -126,6 +124,7 @@
 
   </div>
 </section>
+<script src="https://kit.fontawesome.com/dcda0ea73a.js" crossorigin="anonymous"></script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

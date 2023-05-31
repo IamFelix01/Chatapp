@@ -2,7 +2,9 @@ package controler;
 import java.io.*;
 import java.util.Collection;
 
+import Entity.MessageEntity;
 import Entity.UsersEntity;
+import dao.MessageManager;
 import dao.UserManager;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -23,13 +25,17 @@ public class LoginServlet extends HttpServlet {
         UserManager um = new UserManager();
         HttpSession session = request.getSession();
         UserManager userManager = new UserManager();
+        //retrieve user
         UsersEntity user = userManager.FindUserByUsername(username);
-        System.out.println("Hello "+user.getFirstName());
         session.setAttribute("auth-user", user);
         //Get all Users
         Collection<UsersEntity> AllUsers = userManager.getAll();
         session.setAttribute("allusers",AllUsers);
 
+
+        MessageManager messageManager = new MessageManager();
+        Collection<MessageEntity> messages = messageManager.getAllMessagesByUserId(user.getId());
+        session.setAttribute("allmessages",messages);
 
 
 

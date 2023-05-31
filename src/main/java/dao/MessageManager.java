@@ -1,9 +1,11 @@
 package dao;
 
 import Entity.MessageEntity;
+import Entity.UsersEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -46,6 +48,13 @@ public class MessageManager {
         }finally{
             entityManager.close();
         }
+    }
+    public Collection<MessageEntity> getAllMessagesByUserId(int id){
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        Query query = entityManager.createNativeQuery("SELECT * FROM message WHERE iduser=?", MessageEntity.class);
+        query.setParameter(1, id);
+        Collection<MessageEntity> Messages = (Collection<MessageEntity>) query.getResultList();
+        return Messages;
     }
     public MessageEntity getMessageById(int idmessage){
         EntityManager entityManager = entityManagerFactory.createEntityManager();
